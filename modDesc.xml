@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="105">
+  <author>aaw3k</author>
+  <version>1.0.0.0</version>
+
+  <title>
+    <en>Manual Cover</en>
+    <de>Manuelles Öffnen Der Abdeckung</de>
+    <fr>Ouverture Manuelle Des Bâches</fr>
+    <pl>Ręczne Otwieranie Pokryw</pl>
+    <ru>Ручное Открывание Крышек</ru>
+  </title>
+
+  <description>
+    <en><![CDATA[
+Manually control covers while on foot near the vehicle. Features include a separate key binding for on-foot control and configurable control modes: Manual (Outside), In-Cab (Remote), and Universal. Prevents automatic cover opening.
+
+Hotkeys:
+- Press X key to open/close the cover (when on foot near vehicle).
+- Standard cover controls apply when inside the vehicle (depending on selected mode).
+
+For more information or to report a bug, please visit GitHub (modnext/manualCover).
+]]></en>
+    <de><![CDATA[
+Steuern Sie Abdeckungen manuell, während Sie zu Fuß in der Nähe des Fahrzeugs sind. Zu den Funktionen gehören eine separate Tastenbelegung für die Steuerung zu Fuß und konfigurierbare Steuerungsmodi: Manuell (Außen), In der Kabine (Fernbedienung) und Universal. Verhindert das automatische Öffnen der Abdeckung.
+
+Tastenkombinationen:
+- Drücken Sie die Taste X, um die Abdeckung zu öffnen/schließen (wenn Sie zu Fuß in der Nähe des Fahrzeugs sind).
+- Standard-Abdeckungssteuerungen gelten im Fahrzeug (abhängig vom ausgewählten Modus).
+
+Für weitere Informationen oder um einen Fehler zu melden, besuchen Sie bitte GitHub (modnext/manualCover).
+]]></de>
+    <fr><![CDATA[
+Contrôlez manuellement les bâches en étant à pied près du véhicule. Les fonctionnalités incluent une touche distincte pour le contrôle à pied et des modes de contrôle configurables : Manuel (Extérieur), En cabine (À distance) et Universel. Empêche l'ouverture automatique de la bâche.
+
+Raccourcis clavier:
+- Appuyez sur la touche X pour ouvrir/fermer la bâche (à pied près du véhicule).
+- Les commandes de bâche standard s'appliquent à l'intérieur du véhicule (selon le mode seleccionado).
+
+Pour plus d'informations ou pour signaler un bug, veuillez visiter GitHub (modnext/manualCover).
+]]></fr>
+    <pl><![CDATA[
+Steruj pokrywami ręcznie, stojąc obok pojazdu. Funkcje obejmują oddzielny klawisz sterowania pieszego oraz konfigurowalne tryby sterowania: Z zewnątrz (ręcznie), Z kabiny (zdalnie) i Uniwersalnie. Zapobiega automatycznemu otwieraniu pokryw.
+
+Skróty klawiszowe:
+- Naciśnij klawisz X, aby otworzyć/zamknąć pokrywę (stojąc obok pojazdu).
+- Standardowe sterowanie pokrywą obowiązuje wewnątrz pojazdu (w zależności od wybranego trybu).
+
+Aby uzyskać więcej informacji lub zgłosić błąd, odwiedź GitHub (modnext/manualCover).
+]]></pl>
+    <ru><![CDATA[
+Управляйте тентами вручную, находясь пешком рядом с транспортным средством. Особенности включают отдельную привязку клавиш для управления пешком и настраиваемые режимы управления: Вручную (Снаружи), В кабине (Удаленно) и Универсальный. Предотвращает автоматическое открытие тента.
+
+Горячие клавиши:
+- Нажмите клавишу X, чтобы открыть/закрыть тент (находясь пешком рядом с транспортным средством).
+- Стандартное управление тентом применяется внутри транспортного средства (в зависимости от выбранного режима).
+
+Для получения дополнительной информации или сообщения об ошибке посетите GitHub (modnext/manualCover).
+]]></ru>
+  </description>
+
+  <l10n filenamePrefix="l10n/l10n" />
+
+  <iconFilename>icon_manualCover.dds</iconFilename>
+  <multiplayer supported="true" />
+
+  <extraSourceFiles>
+    <sourceFile filename="src/shared/ManualCoverConstants.lua" />
+    <sourceFile filename="src/AdditionalSpecialization.lua" />
+    <sourceFile filename="src/extensions/ConfigurationUtilExtension.lua" />
+    <sourceFile filename="src/extensions/PlayerInputComponentExtension.lua" />
+  </extraSourceFiles>
+
+  <specializations>
+    <specialization name="manualCover" className="ManualCover" filename="src/specializations/ManualCover.lua"/>
+  </specializations>
+
+  <actions>
+    <action name="TOGGLE_COVER_ON_FOOT" axisType="HALF" displayCategory="PLAYER_INTERACTIVE" />
+  </actions>
+
+  <inputBinding>
+    <actionBinding action="TOGGLE_COVER_ON_FOOT">
+      <binding device="KB_MOUSE_DEFAULT" input="KEY_x" />
+    </actionBinding>
+  </inputBinding>
+</modDesc>

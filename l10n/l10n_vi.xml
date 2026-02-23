@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+  <texts>
+    <!-- Input Bindings -->
+    <text name="input_TOGGLE_COVER_ON_FOOT" text="Mở/Đóng bạt" />
+
+    <!-- Configuration -->
+    <text name="configuration_coverControlMode" text="Điều khiển bạt" />
+    <text name="coverControlMode_manual" text="Thủ công (Bên ngoài)" />
+    <text name="coverControlMode_vehicle" text="Trong cabin (Từ xa)" />
+    <text name="coverControlMode_both" text="Phổ quát" />
+  </texts>
+</l10n>

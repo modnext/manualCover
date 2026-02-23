@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+  <texts>
+    <!-- Input Bindings -->
+    <text name="input_TOGGLE_COVER_ON_FOOT" text="Buka/Tutup penutup" />
+
+    <!-- Configuration -->
+    <text name="configuration_coverControlMode" text="Kontrol penutup" />
+    <text name="coverControlMode_manual" text="Manual (Luar)" />
+    <text name="coverControlMode_vehicle" text="Dalam Kabin (Jarak Jauh)" />
+    <text name="coverControlMode_both" text="Universal" />
+  </texts>
+</l10n>

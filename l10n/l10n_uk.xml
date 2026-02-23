@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+  <texts>
+    <!-- Input Bindings -->
+    <text name="input_TOGGLE_COVER_ON_FOOT" text="Відкрити/Закрити тент" />
+
+    <!-- Configuration -->
+    <text name="configuration_coverControlMode" text="Керування тентом" />
+    <text name="coverControlMode_manual" text="Вручну (Ззовні)" />
+    <text name="coverControlMode_vehicle" text="З кабіни (Дистанційно)" />
+    <text name="coverControlMode_both" text="Універсальний" />
+  </texts>
+</l10n>

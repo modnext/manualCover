@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+  <texts>
+    <!-- Input Bindings -->
+    <text name="input_TOGGLE_COVER_ON_FOOT" text="Ponyva nyitása/zárása" />
+
+    <!-- Configuration -->
+    <text name="configuration_coverControlMode" text="Ponyva vezérlés" />
+    <text name="coverControlMode_manual" text="Kézi (Kívül)" />
+    <text name="coverControlMode_vehicle" text="Fülkében (Távvezérelt)" />
+    <text name="coverControlMode_both" text="Univerzális" />
+  </texts>
+</l10n>

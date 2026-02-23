@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+  <texts>
+    <!-- Input Bindings -->
+    <text name="input_TOGGLE_COVER_ON_FOOT" text="Otevřít/Zavřít plachtu" />
+
+    <!-- Configuration -->
+    <text name="configuration_coverControlMode" text="Ovládání plachty" />
+    <text name="coverControlMode_manual" text="Manuální (Zvenku)" />
+    <text name="coverControlMode_vehicle" text="Z kabiny (Dálkové)" />
+    <text name="coverControlMode_both" text="Univerzální" />
+  </texts>
+</l10n>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+  <texts>
+    <!-- Input Bindings -->
+    <text name="input_TOGGLE_COVER_ON_FOOT" text="Abdeckung öffnen/schließen" />
+
+    <!-- Configuration -->
+    <text name="configuration_coverControlMode" text="Abdeckungssteuerung" />
+    <text name="coverControlMode_manual" text="Manuell (Außen)" />
+    <text name="coverControlMode_vehicle" text="In der Kabine (Fernbedienung)" />
+    <text name="coverControlMode_both" text="Universal" />
+  </texts>
+</l10n>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+  <texts>
+    <!-- Input Bindings -->
+    <text name="input_TOGGLE_COVER_ON_FOOT" text="打开/关闭盖子" />
+
+    <!-- Configuration -->
+    <text name="configuration_coverControlMode" text="盖子控制" />
+    <text name="coverControlMode_manual" text="手动 (外部)" />
+    <text name="coverControlMode_vehicle" text="车内 (远程)" />
+    <text name="coverControlMode_both" text="通用" />
+  </texts>
+</l10n>

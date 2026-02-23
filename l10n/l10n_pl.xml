@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+  <texts>
+    <!-- Input Bindings -->
+    <text name="input_TOGGLE_COVER_ON_FOOT" text="Otwórz/zamknij pokrywę" />
+
+    <!-- Configuration -->
+    <text name="configuration_coverControlMode" text="Sterowanie pokrywą" />
+    <text name="coverControlMode_manual" text="Z zewnątrz (ręcznie)" />
+    <text name="coverControlMode_vehicle" text="Z kabiny (zdalnie)" />
+    <text name="coverControlMode_both" text="Uniwersalny" />
+  </texts>
+</l10n>
