@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
   <author>aaw3k</author>
-  <version>1.0.0.0</version>
+  <version>1.0.1.0</version>
 
   <title>
     <en>Manual Cover</en>
@@ -19,6 +19,11 @@ Hotkeys:
 - Press X key to open/close the cover (when on foot near vehicle).
 - Standard cover controls apply when inside the vehicle (depending on selected mode).
 
+Changelog Version 1.0.1.0:
+- Added a requirement to open the cover of the selected compartment before unloading
+- Disabled automatic cover opening when tipping or opening the tailgate
+- Improved loading trigger handling
+
 For more information or to report a bug, please visit GitHub (modnext/manualCover).
 ]]></en>
     <de><![CDATA[
@@ -27,6 +32,11 @@ Steuern Sie Abdeckungen manuell, während Sie zu Fuß in der Nähe des Fahrzeugs
 Tastenkombinationen:
 - Drücken Sie die Taste X, um die Abdeckung zu öffnen/schließen (wenn Sie zu Fuß in der Nähe des Fahrzeugs sind).
 - Standard-Abdeckungssteuerungen gelten im Fahrzeug (abhängig vom ausgewählten Modus).
+
+Änderungsprotokoll Version 1.0.1.0:
+- Die Abdeckung der ausgewählten Kammer muss nun vor dem Entladen geöffnet werden
+- Automatisches Öffnen der Abdeckung beim Kippen oder Öffnen der Heckklappe deaktiviert
+- Verarbeitung von Beladetriggern verbessert
 
 Für weitere Informationen oder um einen Fehler zu melden, besuchen Sie bitte GitHub (modnext/manualCover).
 ]]></de>
@@ -37,6 +47,11 @@ Raccourcis clavier:
 - Appuyez sur la touche X pour ouvrir/fermer la bâche (à pied près du véhicule).
 - Les commandes de bâche standard s'appliquent à l'intérieur du véhicule (selon le mode seleccionado).
 
+Journal des modifications version 1.0.1.0:
+- Ajout de l'obligation d'ouvrir la bâche du compartiment sélectionné avant le déchargement
+- Désactivation de l'ouverture automatique de la bâche lors du basculement de la benne ou de l'ouverture du hayon
+- Amélioration de la gestion des déclencheurs de chargement
+
 Pour plus d'informations ou pour signaler un bug, veuillez visiter GitHub (modnext/manualCover).
 ]]></fr>
     <pl><![CDATA[
@@ -46,6 +61,11 @@ Skróty klawiszowe:
 - Naciśnij klawisz X, aby otworzyć/zamknąć pokrywę (stojąc obok pojazdu).
 - Standardowe sterowanie pokrywą obowiązuje wewnątrz pojazdu (w zależności od wybranego trybu).
 
+Lista zmian w wersji 1.0.1.0:
+- Dodano wymóg otwarcia pokrywy wybranej komory przed rozpoczęciem rozładunku
+- Wyłączono automatyczne otwieranie pokrywy podczas kiprowania i otwierania tylnej klapy
+- Poprawiono obsługę triggerów załadunku
+
 Aby uzyskać więcej informacji lub zgłosić błąd, odwiedź GitHub (modnext/manualCover).
 ]]></pl>
     <ru><![CDATA[
@@ -54,6 +74,11 @@ Aby uzyskać więcej informacji lub zgłosić błąd, odwiedź GitHub (modnext/m
 Горячие клавиши:
 - Нажмите клавишу X, чтобы открыть/закрыть тент (находясь пешком рядом с транспортным средством).
 - Стандартное управление тентом применяется внутри транспортного средства (в зависимости от выбранного режима).
+
+Журнал изменений версии 1.0.1.0:
+- Добавлено требование открыть тент выбранного отсека перед началом разгрузки
+- Отключено автоматическое открытие тента при опрокидывании кузова и открытии заднего борта
+- Улучшена обработка триггеров загрузки
 
 Для получения дополнительной информации или сообщения об ошибке посетите GitHub (modnext/manualCover).
 ]]></ru>
