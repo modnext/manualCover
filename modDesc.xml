@@ -20,8 +20,7 @@ Hotkeys:
 - Standard cover controls apply when inside the vehicle (depending on selected mode).
 
 Changelog Version 1.0.1.0:
-- Added a requirement to open the cover of the selected compartment before unloading
-- Disabled automatic cover opening when tipping or opening the tailgate
+- Unloading now requires manually opening the cover of the selected compartment
 - Improved loading trigger handling
 
 For more information or to report a bug, please visit GitHub (modnext/manualCover).
@@ -34,8 +33,7 @@ Tastenkombinationen:
 - Standard-Abdeckungssteuerungen gelten im Fahrzeug (abhängig vom ausgewählten Modus).
 
 Änderungsprotokoll Version 1.0.1.0:
-- Die Abdeckung der ausgewählten Kammer muss nun vor dem Entladen geöffnet werden
-- Automatisches Öffnen der Abdeckung beim Kippen oder Öffnen der Heckklappe deaktiviert
+- Die Abdeckung der ausgewählten Kammer muss nun vor dem Entladen manuell geöffnet werden
 - Verarbeitung von Beladetriggern verbessert
 
 Für weitere Informationen oder um einen Fehler zu melden, besuchen Sie bitte GitHub (modnext/manualCover).
@@ -48,8 +46,7 @@ Raccourcis clavier:
 - Les commandes de bâche standard s'appliquent à l'intérieur du véhicule (selon le mode seleccionado).
 
 Journal des modifications version 1.0.1.0:
-- Ajout de l'obligation d'ouvrir la bâche du compartiment sélectionné avant le déchargement
-- Désactivation de l'ouverture automatique de la bâche lors du basculement de la benne ou de l'ouverture du hayon
+- Le déchargement nécessite désormais l'ouverture manuelle de la bâche du compartiment sélectionné
 - Amélioration de la gestion des déclencheurs de chargement
 
 Pour plus d'informations ou pour signaler un bug, veuillez visiter GitHub (modnext/manualCover).
@@ -62,8 +59,7 @@ Skróty klawiszowe:
 - Standardowe sterowanie pokrywą obowiązuje wewnątrz pojazdu (w zależności od wybranego trybu).
 
 Lista zmian w wersji 1.0.1.0:
-- Dodano wymóg otwarcia pokrywy wybranej komory przed rozpoczęciem rozładunku
-- Wyłączono automatyczne otwieranie pokrywy podczas kiprowania i otwierania tylnej klapy
+- Rozładunek wymaga teraz ręcznego otwarcia pokrywy wybranej komory
 - Poprawiono obsługę triggerów załadunku
 
 Aby uzyskać więcej informacji lub zgłosić błąd, odwiedź GitHub (modnext/manualCover).
@@ -76,8 +72,7 @@ Aby uzyskać więcej informacji lub zgłosić błąd, odwiedź GitHub (modnext/m
 - Стандартное управление тентом применяется внутри транспортного средства (в зависимости от выбранного режима).
 
 Журнал изменений версии 1.0.1.0:
-- Добавлено требование открыть тент выбранного отсека перед началом разгрузки
-- Отключено автоматическое открытие тента при опрокидывании кузова и открытии заднего борта
+- Для разгрузки теперь необходимо вручную открыть тент выбранного отсека
 - Улучшена обработка триггеров загрузки
 
 Для получения дополнительной информации или сообщения об ошибке посетите GitHub (modnext/manualCover).
