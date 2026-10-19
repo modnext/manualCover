@@ -12,26 +12,18 @@ local toggleCoverActionId = nil
 -- @param table player player
 -- @return table|nil vehicle or nil
 local function getCoverVehicleFromTargeter(player)
-  local object = nil
+  local node = player.targeter:getClosestTargetedNodeFromType(PlayerInputComponent)
 
-  if player.targeter ~= nil then
-    local node = player.targeter:getClosestTargetedNodeFromType(PlayerInputComponent)
-
-    if node ~= nil then
-      object = g_currentMission:getNodeObject(node)
-    end
+  if node == nil then
+    return nil
   end
+
+  local object = g_currentMission:getNodeObject(node)
 
   if object ~= nil then
     local spec = object.spec_cover
 
-    if spec ~= nil and spec.hasCovers and g_currentMission.accessHandler:canPlayerAccess(object, player) then
-      local mode = object:getCoverControlMode()
-
-      if mode == ManualCoverConstants.MODE_VEHICLE then
-        return nil
-      end
-
+    if spec ~= nil and spec.hasCovers and g_currentMission.accessHandler:canPlayerAccess(object, player) and object:getCoverControlMode() ~= ManualCoverConstants.MODE_VEHICLE then
       return object
     end
   end
@@ -63,11 +55,7 @@ end
 
 ---Called on update
 -- @param table inputComponent input component
--- @param function superFunc original function
--- @param number dt delta time
-local function onPlayerInputComponentUpdate(inputComponent, superFunc, dt)
-  superFunc(inputComponent, dt)
-
+local function onPlayerInputComponentUpdate(inputComponent)
   if inputComponent.player.isOwner and g_inputBinding:getContextName() == PlayerInputComponent.INPUT_CONTEXT_NAME and toggleCoverActionId ~= nil then
     coverVehicle = nil
 
@@ -77,18 +65,16 @@ local function onPlayerInputComponentUpdate(inputComponent, superFunc, dt)
       coverVehicle = getCoverVehicleFromTargeter(player)
     end
 
-    local isActive = coverVehicle ~= nil
+    g_inputBinding:setActionEventActive(toggleCoverActionId, coverVehicle ~= nil)
 
-    g_inputBinding:setActionEventActive(toggleCoverActionId, isActive)
-
-    if isActive then
+    if coverVehicle ~= nil then
       g_inputBinding:setActionEventText(toggleCoverActionId, getActionText(coverVehicle))
     end
   end
 end
 
 ---
-PlayerInputComponent.update = Utils.overwrittenFunction(PlayerInputComponent.update, onPlayerInputComponentUpdate)
+PlayerInputComponent.update = Utils.appendedFunction(PlayerInputComponent.update, onPlayerInputComponentUpdate)
 
 ---Register action events
 -- @param table inputComponent input component

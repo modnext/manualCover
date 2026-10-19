@@ -5,47 +5,31 @@
 -- Copyright (C) Mod Next, All Rights Reserved.
 --
 
+local controlModeNames = {
+  [ManualCoverConstants.MODE_MANUAL] = "coverControlMode_manual",
+  [ManualCoverConstants.MODE_VEHICLE] = "coverControlMode_vehicle",
+  [ManualCoverConstants.MODE_BOTH] = "coverControlMode_both"
+}
+
 ---Get configurations from XML
 -- @includeCode
 local function getConfigurationsFromXML(manager, superFunc, xmlFile, key, baseDir, customEnvironment, isMod, storeItem)
   local configurations, defaultConfigurationIds = superFunc(manager, xmlFile, key, baseDir, customEnvironment, isMod, storeItem)
 
   if storeItem ~= nil and xmlFile:hasProperty("vehicle.cover") then
-    if configurations == nil then
-      configurations = {}
-    end
-
-    if defaultConfigurationIds == nil then
-      defaultConfigurationIds = {}
-    end
+    configurations = configurations or {}
+    defaultConfigurationIds = defaultConfigurationIds or {}
 
     if configurations["coverControlMode"] == nil then
       local configurationItems = {}
 
-      -- manual
-      local configItem1 = VehicleConfigurationItem.new("coverControlMode")
-      configItem1.isDefault = true
-      configItem1.name = g_i18n:getText("coverControlMode_manual")
-      configItem1.index = ManualCoverConstants.MODE_MANUAL
-      configItem1.saveId = tostring(ManualCoverConstants.MODE_MANUAL)
-      configItem1.price = 0
-      table.insert(configurationItems, configItem1)
-
-      -- vehicle
-      local configItem2 = VehicleConfigurationItem.new("coverControlMode")
-      configItem2.name = g_i18n:getText("coverControlMode_vehicle")
-      configItem2.index = ManualCoverConstants.MODE_VEHICLE
-      configItem2.saveId = tostring(ManualCoverConstants.MODE_VEHICLE)
-      configItem2.price = 0
-      table.insert(configurationItems, configItem2)
-
-      -- both
-      local configItem3 = VehicleConfigurationItem.new("coverControlMode")
-      configItem3.name = g_i18n:getText("coverControlMode_both")
-      configItem3.index = ManualCoverConstants.MODE_BOTH
-      configItem3.saveId = tostring(ManualCoverConstants.MODE_BOTH)
-      configItem3.price = 0
-      table.insert(configurationItems, configItem3)
+      for index, name in ipairs(controlModeNames) do
+        local configItem = VehicleConfigurationItem.new("coverControlMode")
+        configItem:setIndex(index)
+        configItem.isDefault = index == ManualCoverConstants.MODE_MANUAL
+        configItem.name = g_i18n:getText(name)
+        table.insert(configurationItems, configItem)
+      end
 
       configurations["coverControlMode"] = configurationItems
       defaultConfigurationIds["coverControlMode"] = ConfigurationUtil.getDefaultConfigIdFromItems(configurationItems)

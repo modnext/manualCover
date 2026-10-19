@@ -6,13 +6,7 @@
 --
 
 local modName = g_currentModName
-
--- specializations to add
-local additionalSpecsBySpecialization = {
-  ["cover"] = {
-    modName .. ".manualCover",
-  },
-}
+local specializationName = modName .. ".manualCover"
 
 AdditionalSpecialization = {}
 
@@ -25,22 +19,8 @@ function AdditionalSpecialization.finalizeTypes(typeManager)
 
   -- iterate types
   for typeName, typeEntry in pairs(typeManager:getTypes()) do
-    -- iterate specializations
-    for specIndex = #typeEntry.specializationNames, 1, -1 do
-      local currentSpecName = typeEntry.specializationNames[specIndex]
-
-      -- check for additional specs
-      for baseSpec, additionalSpecs in pairs(additionalSpecsBySpecialization) do
-        if currentSpecName == baseSpec then
-          for i = 1, #additionalSpecs do
-            local additionalSpec = additionalSpecs[i]
-
-            if typeEntry.specializationsByName[additionalSpec] == nil then
-              typeManager:addSpecialization(typeName, additionalSpec)
-            end
-          end
-        end
-      end
+    if typeEntry.specializationsByName["cover"] ~= nil and typeEntry.specializationsByName[specializationName] == nil then
+      typeManager:addSpecialization(typeName, specializationName)
     end
   end
 end
