@@ -23,14 +23,13 @@ end
 -- @param table vehicleType vehicle type
 function ManualCover.registerFunctions(vehicleType)
   SpecializationUtil.registerFunction(vehicleType, "getCoverControlMode", ManualCover.getCoverControlMode)
-  SpecializationUtil.registerFunction(vehicleType, "getIsCoverOpenForDischarge", ManualCover.getIsCoverOpenForDischarge)
 end
 
 ---Register overwritten functions
 -- @param table vehicleType vehicle type
 function ManualCover.registerOverwrittenFunctions(vehicleType)
-  SpecializationUtil.registerOverwrittenFunction(vehicleType, "getCanDischargeToGround", ManualCover.getCanDischargeToGround)
-  SpecializationUtil.registerOverwrittenFunction(vehicleType, "getCanDischargeToObject", ManualCover.getCanDischargeToObject)
+  SpecializationUtil.registerOverwrittenFunction(vehicleType, "getCanDischargeToGround", ManualCover.getCanDischarge)
+  SpecializationUtil.registerOverwrittenFunction(vehicleType, "getCanDischargeToObject", ManualCover.getCanDischarge)
 end
 
 ---Register event listeners
@@ -78,50 +77,21 @@ function ManualCover:getCoverControlMode()
   return self.coverControlMode or ManualCoverConstants.MODE_MANUAL
 end
 
----Get if the discharge fill unit has an open cover
+---Get if unloading is allowed by the cover state
+-- @param function superFunc original function
 -- @param table dischargeNode discharge node
--- @return boolean true if the cover is open or the fill unit has no cover
-function ManualCover:getIsCoverOpenForDischarge(dischargeNode)
+-- @return boolean true if unloading is allowed
+function ManualCover:getCanDischarge(superFunc, dischargeNode)
   local spec = self.spec_cover
 
-  if spec == nil or not spec.hasCovers or dischargeNode == nil then
-    return true
-  end
+  if spec ~= nil and spec.hasCovers and dischargeNode ~= nil then
+    local covers = spec.fillUnitIndexToCovers[dischargeNode.fillUnitIndex]
 
-  local covers = spec.fillUnitIndexToCovers[dischargeNode.fillUnitIndex]
-
-  if covers ~= nil and #covers > 0 then
-    for i = 1, #covers do
-      if spec.state == covers[i].index then
-        return not spec.isDirty
+    if covers ~= nil and #covers > 0 then
+      if spec.isDirty or not table.hasElement(covers, spec.covers[spec.state]) then
+        return false
       end
     end
-
-    return false
-  end
-
-  return true
-end
-
----Get if unloading to the ground is allowed
--- @param function superFunc original function
--- @param table dischargeNode discharge node
--- @return boolean true if unloading is allowed
-function ManualCover:getCanDischargeToGround(superFunc, dischargeNode)
-  if not self:getIsCoverOpenForDischarge(dischargeNode) then
-    return false
-  end
-
-  return superFunc(self, dischargeNode)
-end
-
----Get if unloading to an object is allowed
--- @param function superFunc original function
--- @param table dischargeNode discharge node
--- @return boolean true if unloading is allowed
-function ManualCover:getCanDischargeToObject(superFunc, dischargeNode)
-  if not self:getIsCoverOpenForDischarge(dischargeNode) then
-    return false
   end
 
   return superFunc(self, dischargeNode)
