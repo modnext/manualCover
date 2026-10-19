@@ -23,6 +23,7 @@ end
 -- @param table vehicleType vehicle type
 function ManualCover.registerFunctions(vehicleType)
   SpecializationUtil.registerFunction(vehicleType, "getCoverControlMode", ManualCover.getCoverControlMode)
+  SpecializationUtil.registerFunction(vehicleType, "getIsCoverOpenForDischarge", ManualCover.getIsCoverOpenForDischarge)
 end
 
 ---Register overwritten functions
@@ -92,6 +93,8 @@ function ManualCover:getCanDischarge(superFunc, dischargeNode)
         return false
       end
     end
+
+    return false
   end
 
   return superFunc(self, dischargeNode)
