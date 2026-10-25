@@ -24,6 +24,7 @@ end
 -- @param table vehicleType vehicle type
 function ManualCover.registerFunctions(vehicleType)
   SpecializationUtil.registerFunction(vehicleType, "getCoverControlMode", ManualCover.getCoverControlMode)
+  SpecializationUtil.registerFunction(vehicleType, "getIsCoverOpenForDischarge", ManualCover.getIsCoverOpenForDischarge)
 end
 
 ---Register overwritten functions
@@ -66,6 +67,10 @@ function ManualCover:onLoad(savegame)
   SpecializationUtil.removeEventListener(self, "onOpenBackDoor", Cover)
   SpecializationUtil.removeEventListener(self, "onFillUnitTriggerChanged", Cover)
   SpecializationUtil.removeEventListener(self, "onRemovedFillUnitTrigger", Cover)
+
+  -- block automatic cover opening while unloading
+  SpecializationUtil.removeEventListener(self, "onStartTipping", Cover)
+  SpecializationUtil.removeEventListener(self, "onOpenBackDoor", Cover)
 end
 
 ---Get cover control mode
@@ -132,6 +137,8 @@ function ManualCover:getCanDischarge(superFunc, dischargeNode)
         return false
       end
     end
+
+    return false
   end
 
   return superFunc(self, dischargeNode)
