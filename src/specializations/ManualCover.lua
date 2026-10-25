@@ -5,6 +5,7 @@
 -- Copyright (C) Mod Next, All Rights Reserved.
 --
 
+---@class ManualCover: Cover, FillUnit
 ManualCover = {}
 
 ---Initialize specialization
@@ -23,12 +24,12 @@ end
 -- @param table vehicleType vehicle type
 function ManualCover.registerFunctions(vehicleType)
   SpecializationUtil.registerFunction(vehicleType, "getCoverControlMode", ManualCover.getCoverControlMode)
-  SpecializationUtil.registerFunction(vehicleType, "getIsCoverOpenForDischarge", ManualCover.getIsCoverOpenForDischarge)
 end
 
 ---Register overwritten functions
 -- @param table vehicleType vehicle type
 function ManualCover.registerOverwrittenFunctions(vehicleType)
+  SpecializationUtil.registerOverwrittenFunction(vehicleType, "setFillUnitInTriggerRange", ManualCover.setFillUnitInTriggerRange)
   SpecializationUtil.registerOverwrittenFunction(vehicleType, "getCanDischargeToGround", ManualCover.getCanDischarge)
   SpecializationUtil.registerOverwrittenFunction(vehicleType, "getCanDischargeToObject", ManualCover.getCanDischarge)
 end
@@ -37,6 +38,10 @@ end
 -- @param table vehicleType vehicle type
 function ManualCover.registerEventListeners(vehicleType)
   SpecializationUtil.registerEventListener(vehicleType, "onLoad", ManualCover)
+  SpecializationUtil.registerEventListener(vehicleType, "onStartTipping", ManualCover)
+  SpecializationUtil.registerEventListener(vehicleType, "onOpenBackDoor", ManualCover)
+  SpecializationUtil.registerEventListener(vehicleType, "onFillUnitTriggerChanged", ManualCover)
+  SpecializationUtil.registerEventListener(vehicleType, "onRemovedFillUnitTrigger", ManualCover)
 end
 
 ---Called on load
@@ -56,26 +61,60 @@ function ManualCover:onLoad(savegame)
     SpecializationUtil.removeEventListener(self, "onRegisterActionEvents", Cover)
   end
 
-  -- block automatic cover reactions to triggers and tipping
-  spec.openCoverWhileTipping = false
-
-  for i = 1, #spec.covers do
-    spec.covers[i].autoReactToTrigger = false
-    spec.covers[i].forceOpenOnTip = false
-  end
-
-  SpecializationUtil.removeEventListener(self, "onFillUnitTriggerChanged", Cover)
-  SpecializationUtil.removeEventListener(self, "onRemovedFillUnitTrigger", Cover)
-
-  -- block automatic cover opening while unloading
+  -- handle automatic cover changes only for AI
   SpecializationUtil.removeEventListener(self, "onStartTipping", Cover)
   SpecializationUtil.removeEventListener(self, "onOpenBackDoor", Cover)
+  SpecializationUtil.removeEventListener(self, "onFillUnitTriggerChanged", Cover)
+  SpecializationUtil.removeEventListener(self, "onRemovedFillUnitTrigger", Cover)
 end
 
 ---Get cover control mode
 -- @return integer controlMode current control mode
 function ManualCover:getCoverControlMode()
   return self.coverControlMode or ManualCoverConstants.MODE_MANUAL
+end
+
+---Called when tipping starts
+-- @param integer tipSide tip side index
+function ManualCover:onStartTipping(tipSide)
+  if self:getIsAIActive() then
+    Cover.onStartTipping(self, tipSide)
+  end
+end
+
+---Called when the back door opens
+-- @param integer tipSide tip side index
+function ManualCover:onOpenBackDoor(tipSide)
+  if self:getIsAIActive() then
+    Cover.onOpenBackDoor(self, tipSide)
+  end
+end
+
+---Called when the fill trigger changes
+function ManualCover:onFillUnitTriggerChanged(...)
+  if self:getIsAIActive() then
+    Cover.onFillUnitTriggerChanged(self, ...)
+  end
+end
+
+---Called when a fill trigger is removed
+-- @param integer numTriggers remaining trigger count
+function ManualCover:onRemovedFillUnitTrigger(numTriggers)
+  if self:getIsAIActive() then
+    Cover.onRemovedFillUnitTrigger(self, numTriggers)
+  end
+end
+
+---Update fill unit trigger range and allow automatic cover changes for AI
+-- @param function superFunc original function
+-- @param integer fillUnitIndex fill unit index
+-- @param boolean isInRange true if in trigger range
+function ManualCover:setFillUnitInTriggerRange(superFunc, fillUnitIndex, isInRange)
+  if self:getIsAIActive() then
+    return superFunc(self, fillUnitIndex, isInRange)
+  end
+
+  return FillUnit.setFillUnitInTriggerRange(self, fillUnitIndex, isInRange)
 end
 
 ---Get if unloading is allowed by the cover state
@@ -85,7 +124,7 @@ end
 function ManualCover:getCanDischarge(superFunc, dischargeNode)
   local spec = self.spec_cover
 
-  if spec ~= nil and spec.hasCovers and dischargeNode ~= nil then
+  if spec ~= nil and spec.hasCovers and dischargeNode ~= nil and not self:getIsAIActive() then
     local covers = spec.fillUnitIndexToCovers[dischargeNode.fillUnitIndex]
 
     if covers ~= nil and #covers > 0 then
@@ -93,8 +132,6 @@ function ManualCover:getCanDischarge(superFunc, dischargeNode)
         return false
       end
     end
-
-    return false
   end
 
   return superFunc(self, dischargeNode)
